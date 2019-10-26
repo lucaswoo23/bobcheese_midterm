@@ -184,10 +184,15 @@
         
   }
 
-  function getColor(d) {
-    console.log(d);
-    return 'black';
-  }
+
+
+  // function getColor(d) {
+  //   console.log(d);
+  //   return 'black';
+  // }
+
+
+
   // plot all the data points on the SVG
   // and add tooltip functionality
   function plotData(map) {
@@ -203,7 +208,6 @@
     // mapping functions
     let xMap = map.x;
     let yMap = map.y;
-    let types = data.map((row) => row['Type 1']);
     // make tooltip
     let div = d3.select("body").append("div")
     .attr("class", "tooltip")
@@ -220,7 +224,7 @@
         .attr('cy', yMap)
         .attr('r', 12)
         .attr('stroke', "#4874B7")
-        .style("fill", getColor(data))         
+        .style("fill", function (d) { return colors[d['Type 1']]; })         
         // add tooltip functionality to points
         .on("mouseover", function(d) {
           div.transition()
@@ -244,7 +248,7 @@
 
     // function to scale x value
     let xScale = d3.scaleLinear()
-      .domain([limits.xMin - 0.5, limits.xMax + 0.5]) // give domain buffer room
+      .domain([limits.xMin - 10, limits.xMax + 10]) // give domain buffer room
       .range([50, 1600]);
 
     // xMap returns a scaled x value from a row of data
@@ -261,7 +265,7 @@
 
     // function to scale y
     let yScale = d3.scaleLinear()
-      .domain([limits.yMax + 5, limits.yMin - 5]) // give domain buffer
+      .domain([limits.yMax + 50, limits.yMin - 50]) // give domain buffer
       .range([50, 950]);
 
     // yMap returns a scaled y value from a row of data
