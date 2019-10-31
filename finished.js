@@ -9,13 +9,17 @@
 
     "Dark": "#A0CBE8",
 
+    "Dragon": "#ECA913",
+
     "Electric": "#F28E2B",
 
-    "Fairy": "#FFBE&D",
+    "Fairy": "#A500FF",
 
     "Fighting": "#59A14F",
 
     "Fire": "#8CD17D",
+
+    "Flying": "#CC15EA",
 
     "Ghost": "#B6992D",
 
@@ -30,6 +34,8 @@
     "Poison": "#FF9D9A",
 
     "Psychic": "#79706E",
+
+    "Rock": "#6b7b94",
 
     "Steel": "#BAB0AC",
 
@@ -88,12 +94,12 @@
 
       dropDown.on("change", function() {
         // Call update to filter it if the drop down is changed (user changes generation)
-        update(data);    
+        update();    
         console.log(d3.select("select").node().value)
         });
         // If any of the legendary checkboxes is changed.. call update
-        d3.selectAll(".myCheckbox").on("change",update);
-          update(data);
+      d3.selectAll(".myCheckbox").on("change",update);
+        update();
         
         
   }
@@ -135,6 +141,7 @@
     // var display = this.checked ? "none" : "inline";
 
     // Get the current generation selected
+    
     var selected_gen = d3.select("select").node().value
     var display = 'inline'
     var displayOthers = 'none'
